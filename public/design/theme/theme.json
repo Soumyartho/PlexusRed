@@ -25,5 +25,9 @@
       "hsl": "hsl(0, 38%, 8%)",
       "description": "Deep Dark Espresso / Near Black"
     }
+  },
+  "fonts": {
+    "headings": "'Array-Regular', sans-serif",
+    "body": "'Sentient-Medium', sans-serif"
   }
 }

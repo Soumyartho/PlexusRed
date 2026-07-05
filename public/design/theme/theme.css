@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Array-Regular';
+  src: url('../../fonts/Array-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sentient-Medium';
+  src: url('../../fonts/Sentient-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Hex Colors */
   --color-primary: #FFDE42;      /* Bright Yellow / Gold */
@@ -16,4 +32,8 @@
   --color-secondary-hsl: 80, 34%, 27%;
   --color-tertiary-hsl: 80, 46%, 17%;
   --color-background-hsl: 0, 38%, 8%;
+
+  /* Fonts */
+  --font-headings: 'Array-Regular', sans-serif;
+  --font-body: 'Sentient-Medium', sans-serif;
 }

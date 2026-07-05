@@ -5,6 +5,10 @@ export const theme = {
     secondary: '#4C5C2D',
     tertiary: '#313E17',
     background: '#1B0C0C'
+  },
+  fonts: {
+    headings: "'Array-Regular', sans-serif",
+    body: "'Sentient-Medium', sans-serif"
   }
 };
 
