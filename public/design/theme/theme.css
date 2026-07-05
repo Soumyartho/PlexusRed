@@ -1,0 +1,19 @@
+:root {
+  /* Hex Colors */
+  --color-primary: #FFDE42;      /* Bright Yellow / Gold */
+  --color-secondary: #4C5C2D;    /* Muted Olive Green */
+  --color-tertiary: #313E17;     /* Dark Forest Green */
+  --color-background: #1B0C0C;   /* Deep Dark Espresso / Near Black */
+
+  /* RGB Values (useful for rgba transparency) */
+  --color-primary-rgb: 255, 222, 66;
+  --color-secondary-rgb: 76, 92, 45;
+  --color-tertiary-rgb: 49, 62, 23;
+  --color-background-rgb: 27, 12, 12;
+
+  /* HSL Values */
+  --color-primary-hsl: 50, 100%, 63%;
+  --color-secondary-hsl: 80, 34%, 27%;
+  --color-tertiary-hsl: 80, 46%, 17%;
+  --color-background-hsl: 0, 38%, 8%;
+}
