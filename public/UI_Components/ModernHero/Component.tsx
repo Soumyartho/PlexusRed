@@ -66,10 +66,10 @@ const CenterImage = () => {
 
     const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
-    const backgroundSize = useTransform(
+    const scale = useTransform(
         scrollY,
         [0, SECTION_HEIGHT + 500],
-        ["170%", "100%"]
+        [1.7, 1]
     );
     const opacity = useTransform(
         scrollY,
@@ -79,17 +79,22 @@ const CenterImage = () => {
 
     return (
         <motion.div
-            className="sticky top-0 h-screen w-full"
+            className="sticky top-0 h-screen w-full overflow-hidden"
             style={{
                 clipPath,
-                backgroundSize,
                 opacity,
-                backgroundImage:
-                    "url(https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3)",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
             }}
-        />
+        >
+            <motion.video
+                src="/videos/Hero_video.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover"
+                style={{ scale }}
+            />
+        </motion.div>
     );
 };
 
