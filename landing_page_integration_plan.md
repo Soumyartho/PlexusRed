@@ -21,10 +21,15 @@ To merge both the **React components** (`BG_Grid`, `ModernHero`, `med_card.react
 
 ### 2.1 Dependencies Installation
 ```bash
-npm install three @types/three @react-three/fiber @react-three/drei framer-motion @studio-freight/lenis react-icons
+npm install three @types/three @react-three/fiber @react-three/drei framer-motion @studio-freight/lenis react-icons @xyflow/react d3
 ```
+*Note: `@xyflow/react` is the modern package for React Flow, and `d3` is utilized for force-directed attack path layout generation.*
 
-### 2.2 Vite Configuration (`vite.config.js`)
+### 2.2 Security Compliance Pinned Versions
+To prevent severe code execution vulnerabilities (such as CVE-2026-29089), all backend and deployment containers must adhere to:
+* **TimescaleDB**: Version strictly pinned to **`>= 2.25.2`** (mitigates untrusted search path vulnerability in extension upgrades).
+
+### 2.3 Vite Configuration (`vite.config.js`)
 Ensure Vite serves static assets correctly from the `public` directory:
 ```javascript
 import { defineConfig } from 'vite';
@@ -40,8 +45,8 @@ export default defineConfig({
 });
 ```
 
-### 2.3 Tailwind Configuration (`tailwind.config.js`)
-To ensure compatibility between Tailwind utility classes and PlexusRed styling tokens, configure `tailwind.config.js` exactly as follows:
+### 2.4 Tailwind Configuration (`tailwind.config.js`)
+Configure `tailwind.config.js` exactly as follows:
 ```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -68,7 +73,7 @@ export default {
 }
 ```
 
-### 2.4 CSS Variable Bridge (`src/index.css`)
+### 2.5 CSS Variable Bridge (`src/index.css`)
 Ensure global variables match the theme configuration:
 ```css
 @import "../public/design/theme/theme.css";
@@ -104,6 +109,7 @@ All assets are located in the public/ workspace directory. Below is the mapping 
 | **UI Audio (Sound Effects)** | `public/models/kenney_interface-sounds/Audio/` | Playback triggers for hover states, confirmation clicks, errors, and authentication scans. |
 | **Background Videos** | Hero_video.mp4 | Masked parallax video loop playing inside the center-fold scroll-reveal block. |
 | **Background Videos** | 0101_v2.mp4 | Blended binary rain video playing at the bottom of the page in the footer background. |
+| **Branding Videos** | Text_bg.mp4 | Blended text video loop playing behind the main giant logo in the middle banner. |
 
 ---
 
@@ -137,19 +143,35 @@ For Fable 5 to build the React application, organize components under `/src/comp
   * Merge input search and glitch button into a single interactive block.
   * When `// Scan target` is clicked, trigger a simulated progress scanner. Integrate `sci-_fi_surveillance_drone.glb` loaded in a mini-viewport alongside scanning logs.
 
-### 4.5 Statistics Grid & 3D Tilt Cards (`src/components/Reports/Reports.jsx`)
+### 4.5 React Flow Attack Path & Threat Theater
+To represent findings not as isolated alerts but as visual attack chains (as per PDF Section UX/Architecture):
+* **Component File**: `/src/components/AttackPath/AttackPath.jsx`
+* **Implementation**:
+  * Uses React Flow (`@xyflow/react`) to construct node-based attack path layouts.
+  * Custom node designs representing target vulnerabilities: `"Exposed RDS Database"`, `"Stolen JWT Token"`, `"Active Directory Misconfig"`.
+  * Nodes connected by stylized curve edges utilizing CatmullRomCurve3 parameters.
+  * Interactive clicking on a node slides open a side drawer containing: **Raw HTTP Request**, **Interactsh OOB Proof**, and **LLM Remediation Advice**.
+
+### 4.6 High-Tech Video Middle Banner (`src/components/BrandingBanner/BrandingBanner.jsx`)
+* **Background Video**: Loop `/videos/Text_bg.mp4` on autoplay/muted/playsInline.
+* **Branding Foreground**: Displays a giant centered `"PLEXUS RED"` logo in `'Array-Regular', sans-serif` (`var(--font-headings)`) with gold colors (`#FFDE42`) and a glowing text-shadow.
+
+### 4.7 Statistics Grid & 3D Tilt Cards (`src/components/Reports/Reports.jsx`)
 * **Source Files**: HTML mini_card.html / mini_card.css, 3D Card HTML modal1.html / modal1.css
 * **Implementation Details**:
   * Align the `mini_card` metrics (e.g., "Threats Blocked: 12,480", "Active Scans: 89/100") inside a Flex grid.
   * Mount two instances of the `modal1` 3D tilt card (titled "Pentest Report: JULY 06" and "Vulnerability Audit: JUNE 29").
   * Use CSS 3D perspective transforms to create the hover tilt behavior.
 
-### 4.6 Pricing Tiers (`src/components/Pricing/Pricing.jsx`)
+### 4.8 Pricing Tiers (`src/components/Pricing/Pricing.jsx`)
 * **Source Files**: React file Cards/med_card.react
 * **Implementation Details**:
-  * Converts `med_card.react` content. Set layout classes to center the pricing tier details on the page.
+  * Set up three subscription plans strictly mapped to the competitive matrix in the PDF:
+    1. **Essential Tier** (~$1,200/year): Weekly autonomous scans, standard React Flow reporting, basic compliance tracking. Target audience: Series A SaaS, Lean DevSecOps.
+    2. **Professional Tier** (~$300/month/app): Continuous scans, zero-false-positive Out-of-Band (OOB) validation, deep API integrations (Jira, Slack, SARIF exports). Target audience: Mid-market SaaS, FinTech, HealthTech.
+    3. **Enterprise Tier** (Custom Quoted): Full Swarm access, R3F Threat Theater (3D particle topology scene), 180-day compliance logs, dedicated Human-in-the-Loop (HITL) approval panels. Target audience: Large Enterprises.
 
-### 4.7 High-Tech Video Footer (`src/components/Footer/Footer.jsx`)
+### 4.9 High-Tech Video Footer (`src/components/Footer/Footer.jsx`)
 * **Source Files**: HTML footer.html, CSS footer.css
 * **Implementation Details**:
   * Ensure the video source points to `/videos/0101_v2.mp4`.
@@ -277,11 +299,6 @@ export const useAudio = () => {
   return playSound;
 };
 ```
-
-### SFX Placement Rules
-* **Navbar Items & Buttons**: Bind `onMouseEnter={() => playSound('hover', 0.15)}` and `onClick={() => playSound('click', 0.3)}`.
-* **Fingerprint click**: Bind `onClick={() => playSound('confirm', 0.45)}`.
-* **Scanning input**: On invalid domain form submission, play `playSound('error', 0.35)`.
 
 ---
 
