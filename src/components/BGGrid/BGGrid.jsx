@@ -15,7 +15,10 @@ export default function BGGrid() {
     if (!container) return;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Background shader: cap at 1x pixel ratio — it's a full-screen fragment
+    // shader, so rendering at native HiDPI is wasted frame budget that starves
+    // the scroll animation loop.
+    renderer.setPixelRatio(1);
     container.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -102,6 +105,7 @@ export default function BGGrid() {
     window.addEventListener('mousemove', onMouseMove);
 
     renderer.setAnimationLoop(() => {
+      if (document.hidden) return; // don't burn frames on a hidden tab
       uniforms.iTime.value = clock.getElapsedTime();
       renderer.render(scene, camera);
     });

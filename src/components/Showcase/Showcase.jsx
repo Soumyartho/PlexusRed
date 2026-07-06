@@ -1,8 +1,10 @@
-import { Suspense, useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Suspense, useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import WebGLShowcase from '../WebGLShowcase';
+import VisibleCanvas from '../../three/VisibleCanvas';
+import { useCenteredModel } from '../../three/useCenteredModel';
 import { useGLTF } from '../../three/gltfConfig';
 import './Showcase.css';
 
@@ -10,30 +12,31 @@ const DSEV = '/models/d.s.e.v._drone.glb';
 
 function DsevDrone() {
   const ref = useRef();
-  const { scene } = useGLTF(DSEV);
-  const model = useMemo(() => scene.clone(true), [scene]);
+  const { clone, scale, offset } = useCenteredModel(DSEV, 2);
 
   useFrame((_, delta) => {
     if (ref.current) ref.current.rotation.y += delta * 0.5;
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.6} floatIntensity={1.2}>
-      <primitive ref={ref} object={model} scale={1.4} />
+    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.9}>
+      <group ref={ref} scale={scale}>
+        <primitive object={clone} position={[-offset.x, -offset.y, -offset.z]} />
+      </group>
     </Float>
   );
 }
 
 function DroneCanvas() {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 50 }} gl={{ alpha: true }}>
+    <VisibleCanvas dpr={[1, 1.75]} camera={{ position: [0, 0, 5.5], fov: 45 }} gl={{ alpha: true }}>
       <ambientLight intensity={0.4} />
       <pointLight position={[5, 5, 5]} intensity={1.4} />
       <pointLight position={[-5, -3, -2]} intensity={0.6} color="#FFDE42" />
       <Suspense fallback={null}>
         <DsevDrone />
       </Suspense>
-    </Canvas>
+    </VisibleCanvas>
   );
 }
 

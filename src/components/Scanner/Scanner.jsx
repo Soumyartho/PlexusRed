@@ -1,8 +1,10 @@
-import { useEffect, useMemo, useRef, useState, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useEffect, useRef, useState, Suspense } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
+import VisibleCanvas from '../../three/VisibleCanvas';
+import { useCenteredModel } from '../../three/useCenteredModel';
 import { useGLTF } from '../../three/gltfConfig';
 import { useAudio } from '../../hooks/useAudio';
 import './Scanner.css';
@@ -13,8 +15,7 @@ const SURVEILLANCE = '/models/sci-_fi_surveillance_drone.glb';
 function SurveillanceDrone({ scanning }) {
   const ref = useRef();
   const laserRef = useRef();
-  const { scene } = useGLTF(SURVEILLANCE);
-  const model = useMemo(() => scene.clone(true), [scene]);
+  const { clone, scale, offset } = useCenteredModel(SURVEILLANCE, 2);
 
   useFrame((state, delta) => {
     if (ref.current) ref.current.rotation.y += delta * 0.4;
@@ -22,22 +23,24 @@ function SurveillanceDrone({ scanning }) {
       const t = state.clock.elapsedTime;
       laserRef.current.rotation.z = Math.sin(t * 2) * 0.5;
       laserRef.current.visible = scanning;
-      laserRef.current.material.opacity = 0.35 + Math.sin(t * 6) * 0.15;
+      laserRef.current.material.opacity = 0.3 + Math.sin(t * 6) * 0.12;
     }
   });
 
   return (
     <group>
-      <Float speed={1.6} rotationIntensity={0.4} floatIntensity={0.9}>
-        <primitive ref={ref} object={model} scale={1.6} position={[0, 0.2, 0]} />
+      <Float speed={1.6} rotationIntensity={0.35} floatIntensity={0.7}>
+        <group ref={ref} scale={scale}>
+          <primitive object={clone} position={[-offset.x, -offset.y, -offset.z]} />
+        </group>
       </Float>
-      {/* scanning laser cone */}
-      <mesh ref={laserRef} position={[0, -1.4, 0]}>
-        <coneGeometry args={[1.1, 2.6, 24, 1, true]} />
+      {/* scanning laser cone, projected below the centered drone */}
+      <mesh ref={laserRef} position={[0, -1.6, 0]}>
+        <coneGeometry args={[1.0, 2.4, 24, 1, true]} />
         <meshBasicMaterial
           color="#FFDE42"
           transparent
-          opacity={0.35}
+          opacity={0.3}
           side={THREE.DoubleSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
@@ -49,14 +52,14 @@ function SurveillanceDrone({ scanning }) {
 
 function DroneScene({ scanning }) {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0.5, 4.5], fov: 50 }} gl={{ alpha: true }}>
+    <VisibleCanvas dpr={[1, 1.75]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ alpha: true }}>
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 5, 5]} intensity={1.4} />
       <pointLight position={[-4, -2, -3]} intensity={0.7} color="#FFDE42" />
       <Suspense fallback={null}>
         <SurveillanceDrone scanning={scanning} />
       </Suspense>
-    </Canvas>
+    </VisibleCanvas>
   );
 }
 

@@ -9,9 +9,8 @@
   --font-body: 'Sentient-Medium', sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* NOTE: no `scroll-behavior: smooth` here — Lenis owns smooth scrolling.
+   Stacking native + JS smoothing causes a laggy, delayed scroll. */
 
 body {
   background-color: var(--color-background);

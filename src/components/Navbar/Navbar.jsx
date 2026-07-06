@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLenis } from 'lenis/react';
 import { useAudio } from '../../hooks/useAudio';
 import './Navbar.css';
 
@@ -9,15 +10,19 @@ const NAV_LINKS = [
   { label: 'Pricing', target: 'pricing', caret: false },
 ];
 
-const scrollToId = (id) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-};
-
 export default function Navbar() {
   const playSound = useAudio();
+  const lenis = useLenis();
   const [scrolled, setScrolled] = useState(false);
   const [announce, setAnnounce] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (lenis) lenis.scrollTo(el, { offset: -80, duration: 1.1 });
+    else el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
