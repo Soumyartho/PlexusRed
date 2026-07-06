@@ -1,9 +1,9 @@
 /* From Uiverse.io by Awadhesh684827 */
 [class*="btn-glitch-"] {
     display: inline-block;
-    font-family: "VT323", monospace;
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
+    font-family: var(--font-headings), monospace;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
     padding: 10px 13px;
     min-width: 175px;
     line-height: 1.5em;
@@ -11,6 +11,7 @@
     text-transform: uppercase;
     cursor: pointer;
     border-radius: 15px;
+    background: transparent;
 
     .text,
     .decoration {
@@ -26,9 +27,9 @@
     &:focus {
         animation-name: glitch;
         animation-duration: 0.2s;
-        background-color: yellow;
-        color: black;
-        border: 1px solid yellow;
+        background-color: var(--color-primary);
+        color: var(--color-background);
+        border: 1px solid var(--color-primary);
 
         .text-decoration {
             animation-name: blink;
@@ -45,7 +46,7 @@
 
     &:active {
         background: none;
-        color: yellow;
+        color: var(--color-primary);
 
         .text-decoration {
             animation-name: none;
@@ -64,13 +65,13 @@
 
 @keyframes glitch {
     25% {
-        background-color: red;
+        background-color: #ff3333;
         transform: translateX(-10px);
         letter-spacing: 10px;
     }
 
     35% {
-        background-color: green;
+        background-color: var(--color-secondary);
         transform: translate(10px);
     }
 
@@ -79,13 +80,13 @@
     }
 
     60% {
-        background-color: blue;
+        background-color: var(--color-tertiary);
         transform: translate(-10px);
         filter: blur(5px);
     }
 
     100% {
-        background-color: yellow;
+        background-color: var(--color-primary);
         blur: (5px);
     }
 }

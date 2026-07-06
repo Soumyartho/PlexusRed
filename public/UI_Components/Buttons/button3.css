@@ -10,7 +10,7 @@ button {
     border-radius: 9999px;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-family: Segoe UI;
+    font-family: var(--font-body), sans-serif;
     font-size: 1.2rem;
     font-weight: 640;
     color: #fafaf6;
@@ -19,12 +19,12 @@ button {
 
 .button-item {
     background-color: transparent;
-    color: #1d1d1f;
+    color: var(--color-background);
 }
 
 .button-item .button-bg {
-    border-color: rgba(255, 208, 116);
-    background-color: rgba(255, 208, 116);
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 .button-inner,
@@ -83,17 +83,16 @@ button {
     transform: scale(0);
 }
 
-.button-bg-layer.-purple {
-    background-color: rgba(163, 116, 255);
+.button-bg-layer.-secondary {
+    background-color: var(--color-secondary);
 }
 
-.button-bg-layer.-turquoise {
-    background-color: rgba(23, 241, 209);
+.button-bg-layer.-tertiary {
+    background-color: var(--color-tertiary);
 }
 
-.button-bg-layer.-yellow {
-    --tw-bg-opacity: 1;
-    background-color: rgba(255, 208, 116, var(--tw-bg-opacity));
+.button-bg-layer.-primary {
+    background-color: var(--color-primary);
 }
 
 .button:hover .button-inner-static {

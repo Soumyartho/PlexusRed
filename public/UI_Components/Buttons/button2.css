@@ -2,16 +2,18 @@ button {
     padding: 15px 25px;
     border: unset;
     border-radius: 15px;
-    color: #212121;
+    color: var(--color-background);
     z-index: 1;
-    background: #e8e8e8;
+    background: var(--color-primary);
     position: relative;
-    font-weight: 1000;
+    font-family: var(--font-body), sans-serif;
+    font-weight: 700;
     font-size: 17px;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms;
     overflow: hidden;
+    cursor: pointer;
 }
 
 button::before {
@@ -22,7 +24,7 @@ button::before {
     height: 100%;
     width: 0;
     border-radius: 15px;
-    background-color: #212121;
+    background-color: var(--color-background);
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
@@ -30,7 +32,8 @@ button::before {
 }
 
 button:hover {
-    color: #e8e8e8;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 button:hover::before {

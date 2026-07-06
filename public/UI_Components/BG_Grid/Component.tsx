@@ -55,7 +55,7 @@ const CyberneticGridShader = () => {
         float line  = pow(1.0 - min(gridUv.x, gridUv.y), 50.0);
 
         // base grid color pulsing
-        vec3 gridColor = vec3(0.1, 0.5, 1.0);
+        vec3 gridColor = vec3(0.7, 0.05, 0.05);
         vec3 color     = gridColor
                        * line
                        * (0.5 + sin(t * 2.0) * 0.2);
@@ -64,11 +64,11 @@ const CyberneticGridShader = () => {
         float energy = sin(uv.x * 20.0 + t * 5.0)
                      * sin(uv.y * 20.0 + t * 3.0);
         energy = smoothstep(0.8, 1.0, energy);
-        color += vec3(1.0, 0.2, 0.8) * energy * line;
+        color += vec3(1.0, 0.87, 0.26) * energy * line;
 
         // glow around mouse
         float glow = smoothstep(0.1, 0.0, mouseDist);
-        color += vec3(1.0) * glow * 0.5;
+        color += vec3(1.0, 0.9, 0.6) * glow * 0.5;
 
         // subtle noise
         color += random(uv + t * 0.1) * 0.05;

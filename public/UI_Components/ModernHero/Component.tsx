@@ -5,8 +5,7 @@ import {
     useScroll,
     useTransform,
 } from "framer-motion";
-import { SiSpacex } from "react-icons/si";
-import { FiArrowRight, FiMapPin } from "react-icons/fi";
+import { FiArrowRight, FiMapPin, FiShield } from "react-icons/fi";
 import { useRef } from "react";
 
 export const SmoothScrollHero = () => {
@@ -24,16 +23,19 @@ export const SmoothScrollHero = () => {
 const Nav = () => {
     return (
         <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-3 text-white">
-            <SiSpacex className="text-3xl mix-blend-difference" />
+            <div className="flex items-center gap-2 mix-blend-difference">
+                <FiShield className="text-3xl text-[#FFDE42]" />
+                <span className="font-bold tracking-wider font-mono text-[#FFDE42]">PLEXUS RED</span>
+            </div>
             <button
                 onClick={() => {
-                    document.getElementById("launch-schedule")?.scrollIntoView({
+                    document.getElementById("assessment-timeline")?.scrollIntoView({
                         behavior: "smooth",
                     });
                 }}
-                className="flex items-center gap-1 text-xs text-zinc-400"
+                className="flex items-center gap-1 text-xs text-[#FFDE42] font-semibold tracking-widest"
             >
-                LAUNCH SCHEDULE <FiArrowRight />
+                ASSESSMENT TIMELINE <FiArrowRight />
             </button>
         </nav>
     );
@@ -83,7 +85,7 @@ const CenterImage = () => {
                 backgroundSize,
                 opacity,
                 backgroundImage:
-                    "url(https://images.unsplash.com/photo-1460186136353-977e9d6085a1?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                    "url(https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3)",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
             }}
@@ -95,29 +97,29 @@ const ParallaxImages = () => {
     return (
         <div className="mx-auto max-w-5xl px-4 pt-[200px]">
             <ParallaxImg
-                src="https://images.unsplash.com/photo-1484600899469-230e8d1d59c0?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="And example of a space launch"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop"
+                alt="Cyber security concept"
                 start={-200}
                 end={200}
                 className="w-1/3"
             />
             <ParallaxImg
-                src="https://images.unsplash.com/photo-1446776709462-d6b525c57bd3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="An example of a space launch"
+                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2670&auto=format&fit=crop"
+                alt="Cyber assessment data"
                 start={200}
                 end={-250}
                 className="mx-auto w-2/3"
             />
             <ParallaxImg
-                src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Orbiting satellite"
+                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2370&auto=format&fit=crop"
+                alt="Digital code grid"
                 start={-200}
                 end={200}
                 className="ml-auto w-1/3"
             />
             <ParallaxImg
-                src="https://images.unsplash.com/photo-1494022299300-899b96e49893?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Orbiting satellite"
+                src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=2670&auto=format&fit=crop"
+                alt="Network hardware"
                 start={0}
                 end={-500}
                 className="ml-24 w-5/12"
@@ -154,24 +156,24 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
 const Schedule = () => {
     return (
         <section
-            id="launch-schedule"
+            id="assessment-timeline"
             className="mx-auto max-w-5xl px-4 py-48 text-white"
         >
             <motion.h1
                 initial={{ y: 48, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeInOut", duration: 0.75 }}
-                className="mb-20 text-4xl font-black uppercase text-zinc-50"
+                className="mb-20 text-4xl font-black uppercase text-[#FFDE42]"
             >
-                Launch Schedule
+                Assessment Timeline
             </motion.h1>
-            <ScheduleItem title="NG-21" date="Dec 9th" location="Florida" />
-            <ScheduleItem title="Starlink" date="Dec 20th" location="Texas" />
-            <ScheduleItem title="Starlink" date="Jan 13th" location="Florida" />
-            <ScheduleItem title="Turksat 6A" date="Feb 22nd" location="Florida" />
-            <ScheduleItem title="NROL-186" date="Mar 1st" location="California" />
-            <ScheduleItem title="GOES-U" date="Mar 8th" location="California" />
-            <ScheduleItem title="ASTRA 1P" date="Apr 8th" location="Texas" />
+            <ScheduleItem title="External Penetration Test" date="July 12th" location="Staging Environment" />
+            <ScheduleItem title="API Security Assessment" date="July 24th" location="Cloud Gateway" />
+            <ScheduleItem title="Social Engineering Drill" date="Aug 10th" location="Corporate Directory" />
+            <ScheduleItem title="Internal Active Directory Audit" date="Aug 28th" location="HQ Corporate Network" />
+            <ScheduleItem title="Red Team Simulation" date="Sept 15th" location="Production Infrastructure" />
+            <ScheduleItem title="Compliance Scan" date="Oct 05th" location="SOC2 Trust Criteria" />
+            <ScheduleItem title="Full Vulnerability Audit" date="Oct 20th" location="All Endpoints" />
         </section>
     );
 };
