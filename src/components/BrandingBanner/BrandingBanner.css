@@ -1,0 +1,73 @@
+.branding-banner {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top: 1px solid var(--color-tertiary);
+  border-bottom: 1px solid var(--color-tertiary);
+  background: var(--color-background);
+}
+
+/* Video background layer with screen blend mask */
+.branding-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.branding-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Edge fade so the video melts into the page */
+.branding-video-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 30%, var(--color-background) 85%),
+    linear-gradient(to bottom, var(--color-background) 0%, transparent 25%, transparent 75%, var(--color-background) 100%);
+}
+
+.branding-foreground {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.branding-foreground .headline {
+  font-family: var(--font-headings), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #FFDE42;
+  font-size: clamp(3rem, 15vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-shadow:
+    0 0 18px rgba(255, 222, 66, 0.55),
+    0 0 48px rgba(255, 222, 66, 0.35),
+    0 0 90px rgba(255, 222, 66, 0.18);
+}
+
+.branding-foreground .sub {
+  margin-top: 18px;
+  font-family: monospace;
+  font-size: clamp(11px, 1.6vw, 14px);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #e4e4e4;
+  opacity: 0.75;
+}

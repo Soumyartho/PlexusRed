@@ -1,0 +1,84 @@
+.glitch-container {
+    position: relative;
+    font-family: var(--font-headings), sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ff3333;
+    text-shadow:
+        0.05em 0 0 var(--color-primary),
+        -0.03em -0.04em 0 #ffffff,
+        0.025em 0.04em 0 #ff3333;
+    animation: glitch 725ms infinite;
+}
+
+.glitch-container span {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.glitch-container span:first-child {
+    animation: glitch 500ms infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-0.04em, -0.03em);
+    opacity: 0.75;
+}
+
+.glitch-container span:last-child {
+    animation: glitch 375ms infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(0.04em, 0.03em);
+    opacity: 0.75;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow:
+            0.05em 0 0 var(--color-primary),
+            -0.03em -0.04em 0 #ffffff,
+            0.025em 0.04em 0 #ff3333;
+    }
+
+    15% {
+        text-shadow:
+            0.05em 0 0 var(--color-primary),
+            -0.03em -0.04em 0 #ffffff,
+            0.025em 0.04em 0 #ff3333;
+    }
+
+    16% {
+        text-shadow:
+            -0.05em -0.025em 0 var(--color-primary),
+            0.025em 0.035em 0 #ffffff,
+            -0.05em -0.05em 0 #ff3333;
+    }
+
+    49% {
+        text-shadow:
+            -0.05em -0.025em 0 var(--color-primary),
+            0.025em 0.035em 0 #ffffff,
+            -0.05em -0.05em 0 #ff3333;
+    }
+
+    50% {
+        text-shadow:
+            0.05em 0.035em 0 var(--color-primary),
+            0.03em 0 0 #ffffff,
+            0 -0.04em 0 #ff3333;
+    }
+
+    99% {
+        text-shadow:
+            0.05em 0.035em 0 var(--color-primary),
+            0.03em 0 0 #ffffff,
+            0 -0.04em 0 #ff3333;
+    }
+
+    100% {
+        text-shadow:
+            -0.05em 0 0 var(--color-primary),
+            -0.025em -0.04em 0 #ffffff,
+            -0.04em -0.025em 0 #ff3333;
+    }
+}

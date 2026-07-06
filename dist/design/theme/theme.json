@@ -1,0 +1,33 @@
+{
+  "name": "PlexusRed Theme",
+  "colors": {
+    "primary": {
+      "hex": "#FFDE42",
+      "rgb": "rgb(255, 222, 66)",
+      "hsl": "hsl(50, 100%, 63%)",
+      "description": "Bright Yellow / Gold"
+    },
+    "secondary": {
+      "hex": "#4C5C2D",
+      "rgb": "rgb(76, 92, 45)",
+      "hsl": "hsl(80, 34%, 27%)",
+      "description": "Muted Olive Green"
+    },
+    "tertiary": {
+      "hex": "#313E17",
+      "rgb": "rgb(49, 62, 23)",
+      "hsl": "hsl(80, 46%, 17%)",
+      "description": "Dark Forest Green"
+    },
+    "background": {
+      "hex": "#1B0C0C",
+      "rgb": "rgb(27, 12, 12)",
+      "hsl": "hsl(0, 38%, 8%)",
+      "description": "Deep Dark Espresso / Near Black"
+    }
+  },
+  "fonts": {
+    "headings": "'Array-Regular', sans-serif",
+    "body": "'Sentient-Medium', sans-serif"
+  }
+}

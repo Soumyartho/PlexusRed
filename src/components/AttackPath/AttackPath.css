@@ -1,0 +1,217 @@
+.attackpath {
+  position: relative;
+  z-index: 1;
+}
+
+.flow-shell {
+  position: relative;
+  margin-top: 48px;
+  height: 560px;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(76, 92, 45, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(16, 8, 8, 0.9), rgba(9, 5, 5, 0.96));
+}
+
+/* React Flow theme overrides */
+.flow-shell .react-flow__attribution {
+  background: transparent;
+  color: #555;
+}
+.flow-shell .react-flow__controls {
+  border: 1px solid var(--color-tertiary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+}
+.flow-shell .react-flow__controls-button {
+  background: rgba(20, 10, 10, 0.95);
+  border-bottom: 1px solid var(--color-tertiary);
+  color: var(--color-primary);
+  fill: var(--color-primary);
+}
+.flow-shell .react-flow__controls-button:hover {
+  background: var(--color-tertiary);
+}
+
+/* ---------------- custom attack node ---------------- */
+.attack-node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 220px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--color-tertiary);
+  background: linear-gradient(180deg, rgba(30, 16, 16, 0.98), rgba(16, 8, 8, 0.98));
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-body), sans-serif;
+}
+.attack-node:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: 0 12px 26px -12px rgba(255, 222, 66, 0.4);
+}
+.attack-node .an-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--color-background);
+  font-size: 18px;
+}
+.attack-node .an-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.attack-node .an-meta {
+  margin-top: 3px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #9a9a9a;
+}
+.attack-node .an-sev {
+  position: absolute;
+  top: -9px;
+  right: 10px;
+  font-family: monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.sev-critical .an-icon { background: #ff5f56; }
+.sev-critical .an-sev { background: #ff5f56; color: #1b0c0c; }
+.sev-high .an-icon { background: #ffbd2e; }
+.sev-high .an-sev { background: #ffbd2e; color: #1b0c0c; }
+.sev-medium .an-icon { background: var(--color-primary); }
+.sev-medium .an-sev { background: var(--color-primary); color: #1b0c0c; }
+
+.attack-node .react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border: none;
+}
+
+/* ---------------- side drawer ---------------- */
+.flow-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 92%);
+  z-index: 20;
+  background: linear-gradient(180deg, rgba(22, 12, 12, 0.99), rgba(12, 6, 6, 0.99));
+  border-left: 1px solid var(--color-primary);
+  box-shadow: -20px 0 50px -20px rgba(0, 0, 0, 0.9);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.flow-drawer.open {
+  transform: translateX(0);
+}
+.drawer-head {
+  padding: 20px;
+  border-bottom: 1px solid var(--color-tertiary);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.drawer-head h3 {
+  font-family: var(--font-headings), sans-serif;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+.drawer-head .sev-pill {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+.drawer-close {
+  background: none;
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-primary);
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.drawer-close:hover { background: var(--color-tertiary); }
+
+.drawer-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+.drawer-section { margin-bottom: 24px; }
+.drawer-section .label {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.drawer-section pre {
+  margin: 0;
+  padding: 14px;
+  border-radius: 10px;
+  background: #0a0505;
+  border: 1px solid var(--color-tertiary);
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cfcfcf;
+  overflow-x: auto;
+  white-space: pre;
+}
+.drawer-section pre .proof { color: #ff8a8a; }
+.drawer-section pre .k { color: var(--color-primary); }
+.drawer-section .remediation {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #d4d4d4;
+  border-left: 2px solid var(--color-primary);
+  padding-left: 14px;
+}
+.drawer-hint {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 5;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #8a8a8a;
+  pointer-events: none;
+}

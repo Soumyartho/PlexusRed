@@ -1,0 +1,81 @@
+@import "../public/design/theme/theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-headings: 'Array-Regular', sans-serif;
+  --font-body: 'Sentient-Medium', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #e4e4e4;
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Shared section rhythm */
+.pr-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 24px;
+}
+
+.pr-eyebrow {
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: 0.85;
+}
+
+.pr-heading {
+  font-family: var(--font-headings), sans-serif;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 12px 0 0;
+}
+
+.pr-subheading {
+  max-width: 640px;
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #b6b6b6;
+}
+
+/* Custom themed scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #120808;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-tertiary);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Keep native selection on-brand */
+::selection {
+  background: rgba(255, 222, 66, 0.28);
+  color: #fff;
+}

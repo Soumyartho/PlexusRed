@@ -1,0 +1,142 @@
+.hero-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* Foreground hero copy sitting over the clipped video */
+.hero-headline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-headline .kicker {
+  font-family: monospace;
+  letter-spacing: 0.4em;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 999px;
+  background: rgba(27, 12, 12, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.hero-headline h1 {
+  font-family: var(--font-headings), sans-serif;
+  font-size: clamp(2.6rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hero-headline h1 .accent {
+  color: var(--color-primary);
+  text-shadow: 0 0 30px rgba(255, 222, 66, 0.55);
+}
+
+.hero-headline p {
+  max-width: 620px;
+  margin: 22px auto 0;
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.65;
+  color: #d8d8d8;
+}
+
+/* Parallax telemetry panels (local, on-brand replacement for stock photos) */
+.parallax-stage {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 220px 24px 40px;
+}
+
+.px-panel {
+  position: relative;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(30, 16, 16, 0.92), rgba(18, 9, 9, 0.92));
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  will-change: transform;
+}
+
+.px-panel .panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-tertiary);
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.px-panel .dot-row {
+  display: flex;
+  gap: 6px;
+}
+.px-panel .dot-row i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-tertiary);
+  display: inline-block;
+}
+.px-panel .dot-row i.live {
+  background: var(--color-primary);
+  box-shadow: 0 0 8px rgba(255, 222, 66, 0.8);
+}
+
+.px-panel .panel-body {
+  padding: 18px 16px;
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.85;
+  color: #cfcfcf;
+}
+.px-panel .panel-body .k {
+  color: var(--color-primary);
+}
+.px-panel .panel-body .warn {
+  color: #ff7a7a;
+}
+
+.px-panel.media {
+  padding: 0;
+}
+.px-panel.media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.px-1 { width: 34%; margin-left: 0; }
+.px-2 { width: 62%; margin: -60px auto 0; }
+.px-3 { width: 34%; margin-left: auto; margin-top: -40px; }
+.px-4 { width: 44%; margin-left: 10%; margin-top: -20px; }
+
+@media (max-width: 768px) {
+  .px-1, .px-2, .px-3, .px-4 {
+    width: 88%;
+    margin: 24px auto 0;
+  }
+}

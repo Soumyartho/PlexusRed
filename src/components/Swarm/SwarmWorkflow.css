@@ -1,0 +1,128 @@
+.swarm {
+  position: relative;
+  z-index: 1;
+}
+
+.swarm-rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 56px;
+}
+
+/* connective line running behind the phase cards */
+.swarm-rail::before {
+  content: "";
+  position: absolute;
+  top: 46px;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-tertiary), var(--color-primary), var(--color-tertiary));
+  opacity: 0.5;
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  .swarm-rail {
+    grid-template-columns: 1fr;
+  }
+  .swarm-rail::before {
+    display: none;
+  }
+}
+
+.phase-card {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 16px;
+  padding: 24px 20px 26px;
+  background: linear-gradient(180deg, rgba(28, 15, 15, 0.92), rgba(16, 8, 8, 0.92));
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.phase-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-primary);
+  box-shadow: 0 24px 40px -18px rgba(255, 222, 66, 0.25);
+}
+
+.phase-index {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 222, 66, 0.1);
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-primary);
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.phase-index svg {
+  width: 24px;
+  height: 24px;
+}
+
+.phase-card h3 {
+  font-family: var(--font-headings), sans-serif;
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 6px;
+}
+
+.phase-tag {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: 0.85;
+}
+
+.phase-card p {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #b6b6b6;
+}
+
+.phase-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-tertiary);
+  color: #e4e4e4;
+}
+
+.phase-chip.hitl {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: rgba(255, 222, 66, 0.08);
+}
+
+.phase-chip .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: swarm-pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes swarm-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; box-shadow: 0 0 8px 2px rgba(255, 222, 66, 0.7); }
+}
